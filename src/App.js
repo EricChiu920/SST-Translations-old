@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Container } from 'semantic-ui-react';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
             Test 2
@@ -20,6 +19,7 @@ class App extends Component {
           >
             Learn React
           </a>
+          <Container><p>Hello</p></Container>
         </header>
       </div>
     );

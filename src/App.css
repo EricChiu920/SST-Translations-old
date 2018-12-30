@@ -1,6 +1,19 @@
 .App {
-  width: 50%;
+  width: 55%;
   margin: 0 auto;
+  padding: 2rem 2rem;
+  background-color: rgb(245, 245, 245);
+}
+
+.header {
+  width: 100%;
+  padding: 0 10%;
+  background-color: rgba(20, 160, 255, 0.35);
+}
+
+.background {
+  min-height: 976px;
+  background-color: rgb(230, 230, 230);
 }
 
 /*

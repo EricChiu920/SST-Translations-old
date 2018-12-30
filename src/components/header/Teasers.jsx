@@ -1,21 +1,35 @@
-/* eslint-disable no-console */
+/* eslint-disable object-curly-newline */
 import React, { Component } from 'react';
 import { Dropdown } from 'semantic-ui-react';
+import { Link, withRouter } from 'react-router-dom';
 
-const options = [{ key: 'abc', value: 'abc', text: 'abc' }, { key: 'bcd', value: 'bcd', text: 'bcd' }];
+const options = [
+  { value: '1', text: 'Novel1', as: Link, to: '/novels/1' },
+  { value: '2', text: 'Second Novel', as: Link, to: '/novels/2' },
+];
 
 class Teasers extends Component {
-  getSelection = (event, { value }) => {
-    console.log(value);
-    const name = event.target.textContext;
-    console.log(name);
+  state = {
+    value: '',
+  }
+
+  getValue = (event, { value }) => {
+    this.setState({ value });
+  }
+
+  close = () => {
+    // eslint-disable-next-line react/prop-types
+    const { history } = this.props;
+    const { value } = this.state;
+
+    history.push(`/novels/${value}`);
   }
 
   render() {
     return (
-      <Dropdown className="dropdownClass" text="Teasers" button selection search options={options} onChange={this.getSelection()} />
+      <Dropdown placeholder="Teasers" fluid selection search options={options} onChange={this.getValue} onClose={this.close} />
     );
   }
 }
 
-export default Teasers;
+export default withRouter(Teasers);

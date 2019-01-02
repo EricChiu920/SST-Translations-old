@@ -1,16 +1,17 @@
+.headerBlock {
+  display: flex;
+  flex-direction: row;
+  font-size: 2rem;
+  margin: 0 auto;
+}
+
 .headerName {
-  width: 40%;
+  width: 20%;
   padding: 1.5rem 1rem;
   color: #3593aa;
   font-weight: bold;
   font-size: 2.5rem;
   text-align: left;
-}
-
-.headerBlock {
-  display: flex;
-  flex-direction: row;
-  font-size: 2rem;
 }
 
 .headerContent {
@@ -19,4 +20,5 @@
   margin-top: 2rem;
   justify-content: space-between;
   margin-right: 2rem;
+  color: #333333;
 }

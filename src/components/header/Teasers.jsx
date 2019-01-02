@@ -4,8 +4,8 @@ import { Dropdown } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 
 const options = [
-  { value: '1', text: 'Novel1', as: Link, to: '/novels/1' },
-  { value: '2', text: 'Second Novel', as: Link, to: '/novels/2' },
+  { value: 'alchemist', text: 'The Novice Alchemist\'s store', as: Link, to: '/novels/alchemist' },
+  // { value: '2', text: 'Second Novel', as: Link, to: '/novels/2' },
 ];
 
 class Teasers extends Component {

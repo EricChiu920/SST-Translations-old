@@ -6,6 +6,7 @@ import Header from '../header/Header';
 import NovelChapter from '../novel/chapter/NovelChapter';
 import summary from '../../novels/summary';
 import text from '../../novels/text';
+import Contact from '../contact/Contact';
 
 const AppRouter = () => (
   <>
@@ -15,6 +16,7 @@ const AppRouter = () => (
       <Route path="/novels/:novel/:chapter" render={() => <NovelChapter text={text} />} />
       <Route exact path="/novels/:novel" render={() => <NovelSummary summary={summary.alchemist} />} />
       <Route exact path="/novels/2" render={() => <NovelSummary title="bcd" teaser />} />
+      <Route path="/contact" render={() => <Contact />} />
       <Route render={() => <Redirect to="/" />} />
     </Switch>
   </>

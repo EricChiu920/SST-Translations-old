@@ -1,19 +1,19 @@
 import React from 'react';
 import './Header.css';
 import { Divider } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Teasers from './Teasers';
 
 const Header = () => (
   <>
     <div className="headerBlock">
       <div className="headerName">
-        <p><NavLink to="/">SST</NavLink></p>
+        <p><Link to="/">SST</Link></p>
       </div>
       <div className="headerContent">
         <p>Ongoing</p>
         <Teasers />
-        <p>Contact</p>
+        <Link to="/contact">Contact</Link>
       </div>
     </div>
     <Divider />

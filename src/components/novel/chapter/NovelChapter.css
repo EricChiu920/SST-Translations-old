@@ -1,3 +1,7 @@
+.mainText {
+  padding-bottom: 2rem;
+}
+
 .chapterHeaderClass {
   width: 20%;
   margin: 0 auto;
@@ -6,4 +10,12 @@
 
 .chapterContentClass {
   white-space: pre-line;
+}
+
+.navigate {
+  font-size: 1.2rem;
+}
+
+.textRight {
+  text-align: right;
 }

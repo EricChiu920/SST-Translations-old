@@ -18,16 +18,18 @@ class NovelChapter extends Component {
     const content = data[chapter - 1];
 
     return (
-      <div>
+      <>
         <div>
-          <Link to={`/novels/${novel}`}>Novel</Link>
-          <h1 className="chapterHeaderClass">{content.title}</h1>
-          <p className="chapterContentClass">{content.text}</p>
-          {chapter > 1 && <Link to={`/novels/${novel}/${Number(chapter) - 1}`}>Prev</Link>}
-          {chapter < data.length && <Link to={`/novels/${novel}/${Number(chapter) + 1}`}>Next</Link>}
+          <div className="mainText">
+            <Link to={`/novels/${novel}`}>Novel</Link>
+            <h1 className="chapterHeaderClass">{content.title}</h1>
+            <p className="chapterContentClass">{content.text}</p>
+          </div>
+          <div className="navigate">{chapter > 1 && <Link to={`/novels/${novel}/${Number(chapter) - 1}`}>Prev</Link>}</div>
+          <div className="navigate textRight">{chapter < data.length && <Link to={`/novels/${novel}/${Number(chapter) + 1}`}>Next</Link>}</div>
         </div>
         {/* <ChapterOptions /> */}
-      </div>
+      </>
     );
   }
 }

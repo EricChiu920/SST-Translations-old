@@ -5,7 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 const options = [
   { value: 'alchemist', text: 'The Novice Alchemist\'s store', as: Link, to: '/novels/alchemist' },
-  // { value: '2', text: 'Second Novel', as: Link, to: '/novels/2' },
+  { value: '2', text: 'Second Novel', as: Link, to: '/novels/2' },
 ];
 
 class Teasers extends Component {

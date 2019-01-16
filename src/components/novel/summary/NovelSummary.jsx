@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
-function NovelSummary(props) {
+const NovelSummary = (props) => {
+  const { novel } = props.match.params;
+
   const {
+    picture,
     title,
     name,
     author,
@@ -13,11 +16,12 @@ function NovelSummary(props) {
     words,
     rawLink,
     teaser,
-  } = props.summary;
+  } = props.summary[novel];
 
   return (
     <>
       <div>
+        {picture && <img src={picture} alt="Illustration from the novel's front cover" height="500" />}
         <p>{`Title: ${title}`}</p>
         <p>{`Author: ${author}`}</p>
         <p>{`Genre: ${genre}`}</p>
@@ -38,13 +42,18 @@ function NovelSummary(props) {
 }
 
 NovelSummary.propTypes = {
-  title: PropTypes.string,
-  name: PropTypes.string,
-  author: PropTypes.string,
-  genre: PropTypes.string,
-  tags: PropTypes.string,
-  time: PropTypes.number,
-  words: PropTypes.number,
+  summary: PropTypes.objectOf(PropTypes.shape({
+    picture: PropTypes.string,
+    title: PropTypes.string,
+    name: PropTypes.string,
+    author: PropTypes.string,
+    genre: PropTypes.string,
+    tags: PropTypes.arrayOf(PropTypes.string),
+    time: PropTypes.string,
+    words: PropTypes.string,
+    rawLink: PropTypes.string,
+    teaser: PropTypes.bool,
+  })),
 };
 
 NovelSummary.defaultProps = {
@@ -57,4 +66,4 @@ NovelSummary.defaultProps = {
   words: 0,
 };
 
-export default NovelSummary;
+export default withRouter(NovelSummary);

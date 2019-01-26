@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Amplify from 'aws-amplify';
@@ -14,11 +15,6 @@ Amplify.configure({
     identityPoolId: config.cognito.IDENTITY_POOL_ID,
     userPoolWebClientId: config.cognito.APP_CLIENT_ID,
   },
-  Storage: {
-    region: config.s3.REGION,
-    bucket: config.s3.BUCKET,
-    identityPoolId: config.cognito.IDENTITY_POOL_ID,
-  },
   API: {
     endpoints: [
       {
@@ -30,6 +26,7 @@ Amplify.configure({
   },
 });
 
+// eslint-disable-next-line no-undef
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

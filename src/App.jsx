@@ -33,6 +33,11 @@ class App extends Component {
     this.setState({ isAuthenticated: authenticated });
   }
 
+  handleLogout = async () => {
+    await Auth.signOut();
+    this.userHasAuthenticated(false);
+  }
+
   render() {
     const {
       isAuthenticated,
@@ -41,14 +46,19 @@ class App extends Component {
       errorMessage,
     } = this.state;
 
+    const authProps = {
+      isAuthenticated,
+      userHasAuthenticated: this.userHasAuthenticated,
+    };
+
     return (
       !isAuthenticating && <>
         {error && <Message error content={errorMessage} />}
         <div className="background">
           <div className="App">
+            {isAuthenticated && <button type="button" onClick={this.handleLogout}>logout</button>}
             <Router>
-              {/* eslint-disable-next-line max-len */}
-              <AppRouter isAuthenticated={isAuthenticated} userHasAuthenticated={this.userHasAuthenticated} />
+              <AppRouter authProps={authProps} />
             </Router>
           </div>
         </div>

@@ -4,11 +4,13 @@ import { Button } from 'semantic-ui-react';
 const LoadButton = ({
   isLoading,
   text,
-  LoadingText,
+  loadingText,
   disabled = false,
   ...props
 }) => (
-  <Button disabled={disabled || isLoading} {...props}>{isLoading ? 'Logging in...' : 'Login'}</Button>
+  <Button disabled={disabled || isLoading} {...props}>
+    {isLoading ? loadingText : text}
+  </Button>
 );
 
 export default LoadButton;

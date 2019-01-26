@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-<<<<<<< HEAD
 import { Link, withRouter } from 'react-router-dom';
 
 const NovelSummary = (props) => {
@@ -8,12 +7,6 @@ const NovelSummary = (props) => {
 
   const {
     picture,
-=======
-import { Link } from 'react-router-dom';
-
-function NovelSummary(props) {
-  const {
->>>>>>> 29bd542214d7c5fca96a57f99db124357f00538d
     title,
     name,
     author,
@@ -23,19 +16,12 @@ function NovelSummary(props) {
     words,
     rawLink,
     teaser,
-<<<<<<< HEAD
   } = props.summary[novel];
-=======
-  } = props.summary;
->>>>>>> 29bd542214d7c5fca96a57f99db124357f00538d
 
   return (
     <>
       <div>
-<<<<<<< HEAD
         {picture && <img src={picture} alt="Illustration from the novel's front cover" height="500" />}
-=======
->>>>>>> 29bd542214d7c5fca96a57f99db124357f00538d
         <p>{`Title: ${title}`}</p>
         <p>{`Author: ${author}`}</p>
         <p>{`Genre: ${genre}`}</p>
@@ -53,10 +39,9 @@ function NovelSummary(props) {
       )}
     </>
   );
-}
+};
 
 NovelSummary.propTypes = {
-<<<<<<< HEAD
   summary: PropTypes.objectOf(PropTypes.shape({
     picture: PropTypes.string,
     title: PropTypes.string,
@@ -69,15 +54,6 @@ NovelSummary.propTypes = {
     rawLink: PropTypes.string,
     teaser: PropTypes.bool,
   })),
-=======
-  title: PropTypes.string,
-  name: PropTypes.string,
-  author: PropTypes.string,
-  genre: PropTypes.string,
-  tags: PropTypes.string,
-  time: PropTypes.number,
-  words: PropTypes.number,
->>>>>>> 29bd542214d7c5fca96a57f99db124357f00538d
 };
 
 NovelSummary.defaultProps = {
@@ -90,8 +66,4 @@ NovelSummary.defaultProps = {
   words: 0,
 };
 
-<<<<<<< HEAD
 export default withRouter(NovelSummary);
-=======
-export default NovelSummary;
->>>>>>> 29bd542214d7c5fca96a57f99db124357f00538d

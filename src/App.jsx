@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
@@ -66,25 +65,6 @@ class App extends Component {
       </>
     );
   }
-=======
-import React from 'react';
-import './App.css';
-import { BrowserRouter as Router } from 'react-router-dom';
-import AppRouter from './components/router/AppRouter';
-
-function App() {
-  return (
-    <>
-      <div className="background">
-        <div className="App">
-          <Router>
-            <AppRouter />
-          </Router>
-        </div>
-      </div>
-    </>
-  );
->>>>>>> 29bd542214d7c5fca96a57f99db124357f00538d
 }
 
 export default App;

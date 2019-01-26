@@ -10,6 +10,7 @@ const summary = {
     rawLink: 'https://ncode.syosetu.com/n3174fc/',
     teaser: true,
   },
+<<<<<<< HEAD
   2: {
     picture: 'https://img1.mitemin.net/1w/ss/k01j3oebaavrdzey8d4hccomicgp_lbh_dw_k4_2nxw.jpg.580.jpg',
     title: 'a',
@@ -22,6 +23,8 @@ const summary = {
     rawLink: 'www.google.com',
     teaser: true,
   },
+=======
+>>>>>>> 29bd542214d7c5fca96a57f99db124357f00538d
 };
 
 export default summary;

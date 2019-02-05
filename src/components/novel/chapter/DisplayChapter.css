@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 .mainText {
   padding-bottom: 2rem;
 }
 
-=======
->>>>>>> 29bd542214d7c5fca96a57f99db124357f00538d
 .chapterHeaderClass {
   width: 20%;
   margin: 0 auto;
@@ -13,7 +10,6 @@
 
 .chapterContentClass {
   white-space: pre-line;
-<<<<<<< HEAD
   line-height: 170%;
 }
 
@@ -22,7 +18,5 @@
 }
 
 .textRight {
-  text-align: right;
-=======
->>>>>>> 29bd542214d7c5fca96a57f99db124357f00538d
+  float: right;
 }

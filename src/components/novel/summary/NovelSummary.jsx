@@ -42,7 +42,7 @@ const NovelSummary = (props) => {
 };
 
 NovelSummary.propTypes = {
-  summary: PropTypes.objectOf(PropTypes.shape({
+  summary: PropTypes.shape({
     picture: PropTypes.string,
     title: PropTypes.string,
     name: PropTypes.string,
@@ -53,7 +53,7 @@ NovelSummary.propTypes = {
     words: PropTypes.string,
     rawLink: PropTypes.string,
     teaser: PropTypes.bool,
-  })),
+  }),
 };
 
 NovelSummary.defaultProps = {

@@ -7,7 +7,6 @@ import NovelSummary from '../novel/summary/NovelSummary';
 import Header from '../header/Header';
 import NovelChapter from '../novel/chapter/NovelChapter';
 import summary from '../../novels/summary';
-import text from '../../novels/text';
 import Contact from '../contact/Contact';
 import Login from '../login/Login';
 import NewChapter from '../NewChapter/NewChapter';
@@ -19,7 +18,8 @@ const AppRouter = ({ authProps }) => (
     <Switch>
       <Route exact path="/" render={() => <FrontPage />} />
       <AuthenticatedRoute exact path="/novels/:novel/new" component={NewChapter} props={authProps} />
-      <Route path="/novels/:novel/:chapter" render={() => <NovelChapter text={text} />} />
+      <AuthenticatedRoute exact path="/novels/:novel/:id/edit" component={NewChapter} props={authProps} />
+      <Route path="/novels/:novel/:chapter" render={() => <NovelChapter authProps={authProps} />} />
       <Route exact path="/novels/:novel" render={() => <NovelSummary summary={summary} />} />
       <Route path="/contact" render={() => <Contact />} />
       <UnauthenticatedRoute path="/login" component={Login} props={authProps} />

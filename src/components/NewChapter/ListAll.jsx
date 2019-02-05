@@ -17,6 +17,8 @@ class Home extends Component {
 
     try {
       const notes = await this.notes();
+      const results = notes.filter(chapter => chapter.novel === 'Alchemist' && chapter.chapter === '1');
+      console.log('results', results);
       this.setState({ notes, isLoading: false });
     } catch (e) {
       console.log('test');
@@ -24,7 +26,7 @@ class Home extends Component {
   }
 
   notes = () => {
-    return API.get('notes', '/notes');
+    return API.get('sst', '/sst');
   }
 
   renderNotesList = (notes) => {

@@ -6,7 +6,10 @@ import LoadButton from '../loadButton/LoadButton';
 
 class NewChapter extends Component {
   state = {
+    // eslint-disable-next-line
+    novel: this.props.match.params.novel,
     title: '',
+    chapter: '',
     body: '',
     isLoading: false,
     error: false,
@@ -14,8 +17,8 @@ class NewChapter extends Component {
   }
 
   validateForm = () => {
-    const { title, body } = this.state;
-    return !(title.length > 0 && body.length > 0);
+    const { novel, title, body } = this.state;
+    return !(novel.length > 0 && title.length > 0 && body.length > 0);
   }
 
   handleChange = (event) => {
@@ -25,23 +28,25 @@ class NewChapter extends Component {
   }
 
   handleSubmit = async (event) => {
-    const { title, body } = this.state;
+    const {
+      novel,
+      title,
+      chapter,
+      body,
+    } = this.state;
     event.preventDefault();
     this.setState({ isLoading: true });
 
     try {
-      await this.uploadChapter({
-        title,
-        body,
+      await API.post('sst', '/sst', {
+        body: {
+          novel,
+          title,
+          chapter,
+          body,
+        },
       })
-        .then(response => console.log(response))
-        // .catch((e) => {
-        //   this.setState({
-        //     isLoading: false,
-        //     error: true,
-        //     errorMessage: e.response,
-        //   });
-        // });
+        .then(response => console.log(response));
       // eslint-disable-next-line
       // this.props.history.push('/');
       this.setState({ isLoading: false });
@@ -54,18 +59,12 @@ class NewChapter extends Component {
     }
   }
 
-  // uploadChapter = text => API.post('notes', '/notes', { body: text })
-  // eslint-disable-next-line arrow-body-style
-  uploadChapter = (body) => {
-    return API.post('notes', '/notes', {
-      body,
-    });
-  }
-
   render() {
     const {
+      novel,
       title,
       body,
+      chapter,
       isLoading,
       error,
       errorMessage,
@@ -77,9 +76,21 @@ class NewChapter extends Component {
         <Form onSubmit={this.handleSubmit} error={error}>
           <Message error content={errorMessage} />
           <Form.Field>
+            <label htmlFor="novel">
+              Chapter novel
+              <input value={novel} onChange={this.handleChange} type="text" placeholder="Chapter Novel" id="novel" />
+            </label>
+          </Form.Field>
+          <Form.Field>
+            <label htmlFor="chapter">
+              Chapter Number
+              <input value={chapter} onChange={this.handleChange} type="number" placeholder="Chapter Number" id="chapter" />
+            </label>
+          </Form.Field>
+          <Form.Field>
             <label htmlFor="title">
               Chapter Title
-              <input value={title} onChange={this.handleChange} type="text" placeholder="Chapter Name" id="title" />
+              <input value={title} onChange={this.handleChange} type="text" placeholder="Chapter Title" id="title" />
             </label>
           </Form.Field>
           <Form.Field>

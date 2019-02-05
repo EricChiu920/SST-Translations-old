@@ -1,15 +1,8 @@
 .App {
-<<<<<<< HEAD
   width: 50%;
   margin: 0 auto;
   padding: 1rem 2.5rem 2rem 2.5rem;
   background-color: white;
-=======
-  width: 55%;
-  margin: 0 auto;
-  padding: 1rem 1rem;
-  background-color: rgb(245, 245, 245);
->>>>>>> 29bd542214d7c5fca96a57f99db124357f00538d
 }
 
 .header {

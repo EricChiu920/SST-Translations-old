@@ -11,14 +11,18 @@ class Home extends Component {
 
   async componentDidMount() {
     const { isAuthenticated } = this.props;
-    if (!isAuthenticated) {
-      return;
-    }
 
     try {
-      const notes = await this.notes();
-      const results = notes.filter(chapter => chapter.novel === 'Alchemist' && chapter.chapter === '1');
-      console.log('results', results);
+      const notes = await API.get('sst', '/sst/alchemist', {
+        body: {
+          novel: 'alchemist',
+          chapter: '4',
+        },
+      })
+        .then(response => console.log(response));
+      // console.log('notes', notes);
+      // const results = notes.filter(chapter => chapter.novel === 'Alchemist' && chapter.chapter === '1');
+      // console.log('results', results);
       this.setState({ notes, isLoading: false });
     } catch (e) {
       console.log('test');
@@ -30,7 +34,8 @@ class Home extends Component {
   }
 
   renderNotesList = (notes) => {
-    return notes.map(note => <li>{note.content}</li>);
+    // return notes.map(note => <li>{note.content}</li>);
+    return null;
   }
 
   renderLander = () => {

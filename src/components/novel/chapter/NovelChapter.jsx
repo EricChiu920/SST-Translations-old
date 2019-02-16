@@ -74,7 +74,7 @@ class NovelChapter extends Component {
           {isAuthenticated && <Link to={{ pathname: `/novels/${novel}/${chapter}/edit`, state: { data } }}><Button color="yellow">Edit</Button></Link>}
           <div>
             <span className="navigate">{chapter > 1 && <Link to={`/novels/${novel}/${Number(chapter) - 1}`}>Prev</Link>}</span>
-            <span className="navigate textRight">{chapter < lastChapter && <Link to={`/novels/${novel}/${Number(chapter) + 1}`}>Next</Link>}</span>
+            <span className="navigate toRight">{chapter < lastChapter && <Link to={`/novels/${novel}/${Number(chapter) + 1}`}>Next</Link>}</span>
           </div>
         </div>
         {/* <ChapterOptions /> */}

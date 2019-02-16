@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Button } from 'semantic-ui-react';
+import { Form, Button, Confirm } from 'semantic-ui-react';
 import { API } from 'aws-amplify';
 import LoadButton from '../loadButton/LoadButton';
+import './EditChapter.css';
 
 class EditChapter extends Component {
   state = {
     isLoading: false,
     title: '',
     body: '',
+    open: false,
   }
 
   componentDidMount() {
@@ -59,11 +61,30 @@ class EditChapter extends Component {
     this.props.history.push(`/novels/${novel}/${chapter}`)
   }
 
+  handleDelete = async (event) => {
+    event.preventDefault();
+    // eslint-disable-next-line
+    const { novel, chapter } = this.props.match.params;
+
+    try {
+      await API.del('sst', `/sst/${novel}/${chapter}`);
+      // eslint-disable-next-line
+      this.props.history.push("/");
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  open = () => this.setState({ open: true });
+
+  close = () => this.setState({ open: false });
+
   render() {
     const { isLoading } = this.state;
     const {
       title,
       body,
+      open,
     } = this.state;
 
     return (
@@ -80,10 +101,11 @@ class EditChapter extends Component {
             Chapter Text
             <textarea value={body} onChange={this.handleChange} type="text" placeholder="Chapter Name" id="body" rows="30" />
           </Form.Field>
-          <span>
-            <LoadButton disabled={this.validateForm()} isLoading={isLoading} text="Upload Chapter" loadingText="Uploading..." />
-            <Button color="red">Delete</Button>
-          </span>
+          <div>
+            <LoadButton disabled={this.validateForm()} isLoading={isLoading} text="Edit Chapter" loadingText="Uploading..." />
+            <span className="toRight"><Button type="button" onClick={this.open} color="red">Delete</Button></span>
+            <Confirm open={open} onCancel={this.close} onConfirm={this.handleDelete} />
+          </div>
         </Form>
       </>
     );

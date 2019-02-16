@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { API } from 'aws-amplify';
 import { Link, withRouter } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
-// import ChapterOptions from './ChapterOptions';
+import ChapterOptions from './ChapterOptions';
 import './NovelChapter.css';
 
 
@@ -77,7 +77,7 @@ class NovelChapter extends Component {
             <span className="navigate toRight">{chapter < lastChapter && <Link to={`/novels/${novel}/${Number(chapter) + 1}`}>Next</Link>}</span>
           </div>
         </div>
-        {/* <ChapterOptions /> */}
+        <ChapterOptions />
       </>
     );
   }

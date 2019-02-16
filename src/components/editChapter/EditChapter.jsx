@@ -1,17 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Form } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
+import { API } from 'aws-amplify';
 import LoadButton from '../loadButton/LoadButton';
 
 class EditChapter extends Component {
   state = {
     isLoading: false,
+    title: '',
+    body: '',
+  }
+
+  componentDidMount() {
+    const {
+      title,
+      body,
+    // eslint-disable-next-line react/destructuring-assignment
+    } = this.props.location.state.data;
+
+    this.setState({
+      title,
+      body,
+    });
   }
 
   validateForm = () => {
-    const { novel, title, body } = this.props;
-    // return !(novel.length > 0 && title.length > 0 && body.length > 0);
-    return true;
+    // eslint-disable-next-line react/destructuring-assignment
+    const { title, body } = this.props.location.state.data;
+    return !(title.length > 0 && body.length > 0);
   }
 
   handleChange = (event) => {
@@ -20,31 +36,40 @@ class EditChapter extends Component {
     });
   }
 
+  handleSubmit = async (event) => {
+    // eslint-disable-next-line
+    const { novel, chapter } = this.props.match.params;
+    const { title, body } = this.state;
+    // const { novel, chapter } = this.props.match.params;
+    event.preventDefault();
+    this.setState({ isLoading: true });
+
+    try {
+      await API.put('sst', `/sst/${novel}/${chapter}`, {
+        body: {
+          title,
+          body,
+        },
+      });
+    } catch (e) {
+      console.log(e);
+      this.setState({ isLoading: false });
+    }
+    // eslint-disable-next-line
+    this.props.history.push(`/novels/${novel}/${chapter}`)
+  }
+
   render() {
     const { isLoading } = this.state;
     const {
-      novel,
-      chapter,
       title,
       body,
-    } = this.props;
+    } = this.state;
 
     return (
       <>
-        <div>New Chapter Form</div>
+        <div>Edit Chapter Form</div>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Field>
-            <label htmlFor="novel">
-              Chapter novel
-              <input value={novel} onChange={this.handleChange} type="text" placeholder="Chapter Novel" id="novel" />
-            </label>
-          </Form.Field>
-          <Form.Field>
-            <label htmlFor="chapter">
-              Chapter Number
-              <input value={chapter} onChange={this.handleChange} type="number" placeholder="Chapter Number" id="chapter" />
-            </label>
-          </Form.Field>
           <Form.Field>
             <label htmlFor="title">
               Chapter Title
@@ -55,7 +80,10 @@ class EditChapter extends Component {
             Chapter Text
             <textarea value={body} onChange={this.handleChange} type="text" placeholder="Chapter Name" id="body" rows="30" />
           </Form.Field>
-          <LoadButton disabled={this.validateForm()} isLoading={isLoading} text="Upload Chapter" loadingText="Uploading..." />
+          <span>
+            <LoadButton disabled={this.validateForm()} isLoading={isLoading} text="Upload Chapter" loadingText="Uploading..." />
+            <Button color="red">Delete</Button>
+          </span>
         </Form>
       </>
     );
@@ -63,10 +91,16 @@ class EditChapter extends Component {
 }
 
 EditChapter.propTypes = {
-  novel: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
-  chapter: PropTypes.string.isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      data: PropTypes.shape({
+        novel: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        body: PropTypes.string.isRequired,
+        chapter: PropTypes.string.isRequired,
+      }),
+    }).isRequired,
+  }).isRequired,
 };
 
 export default EditChapter;

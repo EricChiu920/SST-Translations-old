@@ -10,6 +10,7 @@ import summary from '../../novels/summary';
 import Contact from '../contact/Contact';
 import Login from '../login/Login';
 import NewChapter from '../NewChapter/NewChapter';
+import EditChapter from '../editChapter/EditChapter';
 import Home from '../NewChapter/ListAll';
 
 const AppRouter = ({ authProps }) => (
@@ -18,12 +19,12 @@ const AppRouter = ({ authProps }) => (
     <Switch>
       <Route exact path="/" render={() => <FrontPage />} />
       <AuthenticatedRoute exact path="/novels/:novel/new" component={NewChapter} props={authProps} />
-      <AuthenticatedRoute exact path="/novels/:novel/:id/edit" component={NewChapter} props={authProps} />
+      <AuthenticatedRoute exact path="/novels/:novel/:chapter/edit" component={EditChapter} props={authProps} />
       <Route path="/novels/:novel/:chapter" render={() => <NovelChapter authProps={authProps} />} />
       <Route exact path="/novels/:novel" render={() => <NovelSummary summary={summary} />} />
       <Route path="/contact" render={() => <Contact />} />
       <UnauthenticatedRoute path="/login" component={Login} props={authProps} />
-      <AuthenticatedRoute exact path="/all" component={Home} props={authProps} />
+      <Route exact path="/all" component={Home} props={authProps} />
       <Route render={() => <Redirect to="/" />} />
     </Switch>
   </>

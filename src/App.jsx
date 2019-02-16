@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
-import { Message } from 'semantic-ui-react';
+import { Message, Button } from 'semantic-ui-react';
 import AppRouter from './components/router/AppRouter';
 import './App.css';
 
@@ -56,7 +56,7 @@ class App extends Component {
         {error && <Message error content={errorMessage} />}
         <div className="background">
           <div className="App">
-            {isAuthenticated && <button type="button" onClick={this.handleLogout}>logout</button>}
+            {isAuthenticated && <Button type="button" onClick={this.handleLogout}>logout</Button>}
             <Router>
               <AppRouter authProps={authProps} />
             </Router>

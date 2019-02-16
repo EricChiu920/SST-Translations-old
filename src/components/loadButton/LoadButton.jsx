@@ -8,7 +8,7 @@ const LoadButton = ({
   disabled = false,
   ...props
 }) => (
-  <Button disabled={disabled || isLoading} {...props}>
+  <Button primary disabled={disabled || isLoading} {...props}>
     {isLoading ? loadingText : text}
   </Button>
 );
